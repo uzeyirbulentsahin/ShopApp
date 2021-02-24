@@ -1,23 +1,27 @@
 import { Injectable, OnInit } from "@angular/core";
+import { Category } from "./category.model";
 import { Product } from "./product.model";
 import { RestService } from "./rest.service";
 
 @Injectable()
-export class ProductReposity implements OnInit{
-    private products:Product[]=[];
-    constructor(private restService:RestService){ 
-        this.restService.getProducts().subscribe(products => this.products=products);
+export class ProductReposity implements OnInit {
+    private products: Product[] = [];
+    constructor(private restService: RestService) {
+        this.restService.getProducts().subscribe(products => this.products = products);
     }
     ngOnInit() {
-       
+
     }
 
-    getProduct(id:number){
-        return this.products.find(i=>i.id===id);
+    getProduct(id: number) {
+        return this.products.find(i => i.id === id);
     }
 
-    getProducts():Product[]{
-        return this.products;
+    getProducts(category:Category=null): Product[] {
+        if(category)
+            return this.products.filter(p=>p.category == category.name);
+        else
+            return this.products;
 
     }
 

@@ -13,13 +13,19 @@ import { ProductReposity } from "../model/product.repository";
 })
 
 export class ShopComponent{
+    public selectedCategory:Category=null;
+
     constructor(private categoryRepository:CategoryReposity
         ,private productRepository:ProductReposity){}
 
     get products(): Product[]{
-        return this.productRepository.getProducts();
+        return this.productRepository.getProducts(this.selectedCategory);
     }
     get categories(): Category[]{
         return this.categoryRepository.getCategories();
+    }
+
+    changeCategory(newCategory?:Category){
+            this.selectedCategory=newCategory;
     }
 }

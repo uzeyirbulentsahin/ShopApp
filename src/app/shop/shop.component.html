@@ -5,11 +5,11 @@
     <div class="row">
         <div class="col-3">
             <div class="list group">
-                <a href="#" class="list-group-item list-group-item-action">kategori 1</a>
-                <a href="#" class="list-group-item list-group-item-action">kategori 2</a>
-                <a href="#" class="list-group-item list-group-item-action">kategori 3</a>
-                <a href="#" class="list-group-item list-group-item-action">kategori 4</a>
-                <a href="#" class="list-group-item list-group-item-action">kategori 5</a>
+                <a href="#" (click)="changeCategory()" class="list-group-item list-group-item-action">Tüm Kategoriler</a>
+                <a href="#" *ngFor="let category of categories" (click)="changeCategory(category)"
+                    class="list-group-item list-group-item-action" [class.active]="category==selectedCategory">
+                    {{category.name}}</a>
+
             </div>
         </div>
         <div class="col-9">
@@ -23,12 +23,13 @@
                                     <a href="">
                                         {{product.name}}
                                     </a>
-                                    <small class="text-muted">
-                                        <i class="fas fa-lira-sign"></i>
-                                            {{product.price}}
-                                        
-                                    </small>
+
                                 </h4>
+                                <small class="text-muted">
+                                    <i class="fas fa-lira-sign"></i>
+                                    {{product.price}}
+
+                                </small>
                             </div>
                             <div class="card-footer text-xenter">
                                 <div class="btn btn-outline-primary btn-sm">Details</div>
