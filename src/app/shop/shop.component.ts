@@ -9,6 +9,9 @@ import { ProductReposity } from "../model/product.repository";
     templateUrl: 'shop.component.html',
     styles: [`
         .pt-100 { padding-top:100px; }
+        .img{
+            height:75%;
+        }
     `]
 })
 
