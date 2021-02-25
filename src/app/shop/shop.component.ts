@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { Cart } from "../model/cart.model";
 import { Category } from "../model/category.model";
 import { CategoryReposity } from "../model/category.repository";
 import { Product } from "../model/product.model";
@@ -22,7 +23,8 @@ export class ShopComponent {
 
 
     constructor(private categoryRepository: CategoryReposity
-        , private productRepository: ProductReposity) { }
+        , private productRepository: ProductReposity
+        ,private cart:Cart) { }
 
     get products(): Product[] {
         let index = (this.selectedPage - 1) * this.productPerPage
@@ -46,5 +48,8 @@ export class ShopComponent {
     }
     changePage(p: number) {
         this.selectedPage = p;
+    }
+    addProductToCart(product:Product){
+        this.cart.addItem(product);
     }
 }
