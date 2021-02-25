@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { Router } from "@angular/router";
 import { Cart } from "../model/cart.model";
 import { Category } from "../model/category.model";
 import { CategoryReposity } from "../model/category.repository";
@@ -8,12 +9,7 @@ import { ProductReposity } from "../model/product.repository";
 @Component({
     selector: 'shop',
     templateUrl: 'shop.component.html',
-    styles: [`
-        .pt-100 { padding-top:100px; }
-        .img{
-            height:75%;
-        }
-    `]
+    
 })
 
 export class ShopComponent {
@@ -24,7 +20,8 @@ export class ShopComponent {
 
     constructor(private categoryRepository: CategoryReposity
         , private productRepository: ProductReposity
-        ,private cart:Cart) { }
+        ,private cart:Cart
+        ,private router:Router) { }
 
     get products(): Product[] {
         let index = (this.selectedPage - 1) * this.productPerPage
@@ -51,5 +48,7 @@ export class ShopComponent {
     }
     addProductToCart(product:Product){
         this.cart.addItem(product);
+        this.router.navigateByUrl('/cart');
+
     }
 }
